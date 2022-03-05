@@ -20,9 +20,9 @@ public class MergeSortInPlace {
     }
 
     private static void merge(int[] arr, int start, int mid, int end) {
-        int[] mix = new int[start - end];
+        int[] mix = new int[start - end + 1];
 
-        int i=0,j=mid+1,k=0;
+        int i=start,j=mid+1,k=0;
         while(i < mid && j<end){
             if(arr[i] < arr[j]){
                 mix[k] = arr[i];
