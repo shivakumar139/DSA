@@ -7,6 +7,8 @@ public class TwoDList {
     public static void main(String[] args) {
         int[] arr = {-1,0,1,2,-1,-4};
         printList(threeSum(arr));
+
+//        for()
     }
     static void printList(List<List<Integer>> li){
         for(List a:li){
