@@ -1,25 +1,29 @@
 package Recursion;
-
-import com.sun.jdi.event.StepEvent;
-
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SubSeq {
     public static void main(String[] args) {
 //        subSeq("","abc");
         System.out.println(subSeqList("","abc"));
+//        System.out.println(subSeq("","abc"));
+        subSeq("", "abc");
     }
 
-    private static void subSeq(String p, String up) {
+    public static void subSeq(String p, String up){
         if(up.isEmpty()){
-            System.out.println(p);
+            System.out.print(p + " ");
             return;
         }
 
-        subSeq(p + up.charAt(0), up.substring(1));
-        subSeq(p , up.substring(1));
+        char ch = up.charAt(0);
+        // include call
+        subSeq(p+ch, up.substring(1));
+
+        // exclude call
+        subSeq(p, up.substring(1));
+
     }
+
     private static ArrayList<String> subSeqList(String p, String up) {
         if(up.isEmpty()){
 //            System.out.println(p);

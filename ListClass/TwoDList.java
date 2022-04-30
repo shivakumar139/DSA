@@ -34,7 +34,7 @@ public class TwoDList {
                         li.get(listIndex).add(nums[j]);
                         li.get(listIndex).add(nums[k]);
                         listIndex++;
-                        System.out.println(li.get(0).containsAll(a));
+//                        System.out.println("Three Sum " + li.get(0).containsAll(a));
                     }
                 }
             }

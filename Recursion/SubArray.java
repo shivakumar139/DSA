@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SubArray {
     public static void main(String[] args) {
-        int[] arr = {2,1,2};
+        int[] arr = {1,2,3};
         System.out.println(subSetDuplicate(arr));
         System.out.println(subSet(arr));
     }
