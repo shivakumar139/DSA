@@ -13,6 +13,8 @@ public class Permutations {
 //        List<int[]> li = new ArrayList<>();
 //       permutationList(arr, li, 0);
 //        System.out.println(li);
+        permutationArr(arr,0);
+
 
 
     }
@@ -40,7 +42,7 @@ public class Permutations {
         return;
     }
     public static void permutationArr(int[] arr, int index){
-        if(index >= arr.length){
+        if(index == arr.length-1){
             System.out.println(Arrays.toString(arr));
             return;
         }
