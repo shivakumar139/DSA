@@ -10,12 +10,14 @@ public class Fibo {
         BigInteger b = new BigInteger("1");
         BigInteger ans = new BigInteger("0");
 
-        for(int i=1;i<50;i++){
+        for(int i=1;i<2147483647;i++){
             ans = a.add(b);
             a = b;
             b=ans;
         }
         System.out.println(ans);
+        String str = ans.toString();
+        System.out.println(str.charAt(str.length()-1));
 
 
     }
