@@ -6,11 +6,18 @@ public class Runner {
         tree.add();
         System.out.println("Recursive In order traversal");
         tree.inOrderTraversal();
+        tree.leftBoundary();
 
         System.out.println("\nIterative In order traversal");
         tree.iterativeInOrder();
-        System.out.println("\nZig Zag Traversal");
-        tree.zigzagLevelOrder();
+
+//        System.out.println("\nIterative Pre order traversal");
+//        tree.iterativePreOrder();
+//
+//        System.out.println("\nIterative Post order traversal");
+//        tree.iterativePostOrder();
+//        System.out.println("\nZig Zag Traversal");
+//        tree.zigzagLevelOrder();
 
 //        System.out.println("\nLevel Order Traversal");
 //        tree.leverlOrderTraversal();

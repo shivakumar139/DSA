@@ -253,23 +253,211 @@ public class BinaryTree {
         }
     }
 
+    // iterative preorder
+    public void iterativePreOrder(){
+        Node node = this.root;
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(node);
+        Node curr = node;
+        while(!stack.isEmpty()){
+            // while current is not empty keep going
+            while(curr != null){
+                System.out.print(curr.data + " ");
+                stack.push(curr);
+                curr = curr.left;
+            }
+            Node peek = stack.pop();
+            curr = peek.right;
+        }
+    }
+
+    // iterative post order
+    public void iterativePostOrder(){
+        Node node = this.root;
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(node);
+        Node curr = node;
+        while(!stack.isEmpty()){
+            // while current is not empty keep going
+            while(curr != null){
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.peek().right;
+            while(curr != null){
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+            Node peek = stack.pop();
+            curr = peek.right;
+            System.out.println(peek.data + " ");
+        }
+    }
+
     // zig zag traversal
     public void zigzagLevelOrder(){
         Node node = this.root;
 
         Queue<Node> q = new LinkedList<>();
         q.add(node);
+        boolean dir = false;
         while(!q.isEmpty()){
             Node temp = q.remove();
             System.out.print(temp.data + " ");
 
-            if(temp.right != null){
-                q.add(temp.right);
-            }
-            if(temp.left != null){
-                q.add(temp.left);
+            //right to left
+            if(dir == false){
+                if(temp.right != null){
+                    q.add(temp.right);
+                }
+                if(temp.left != null){
+                    q.add(temp.left);
+                }
+                dir = true;
+            } else{
+                if(temp.left != null){
+                    q.add(temp.left);
+                }
+                if(temp.right != null){
+                    q.add(temp.right);
+                }
+                dir = false;
             }
         }
+    }
+
+
+
+    // left boundary  traversal
+    public void leftBoundary(){
+        leftBoundary(this.root);
+    }
+
+    private void leftBoundary(Node root){
+        if(root == null){
+            return;
+        }
+
+        if(root.left == null && root.right == null){
+            return;
+        }
+
+        System.out.print(root.data);
+
+        if(root.left != null){
+            leftBoundary(root.left);
+            return;
+        }
+
+        if(root.right != null) {
+            leftBoundary(root.right);
+            return;
+        }
+
+    }
+
+    // gfg
+
+    private void leftBoundary(Node root, ArrayList ans){
+        if(root == null){
+            return;
+        }
+
+        ans.add(root.data);
+        if(root.left != null){
+            leftBoundary(root.left, ans);
+        } else{
+            leftBoundary(root.right, ans);
+        }
+    }
+
+    // right boundary
+    private void rightBoundary(Node root, ArrayList ans){
+        if(root == null){
+            return;
+        }
+
+        if(root.right != null){
+            rightBoundary(root.right, ans);
+        } else{
+            rightBoundary(root.left, ans);
+        }
+
+        ans.add(root.data);
+    }
+
+
+    // leaf nodes
+    private void leafBoundary(Node root, ArrayList ans){
+        if(root == null){
+            return;
+        }
+
+        if(root.left == null && root.right == null){
+            ans.add(root.data);
+            return;
+        }
+        leafBoundary(root.left, ans);
+        leafBoundary(root.right, ans);
+
+    }
+    ArrayList <Integer> boundary(Node node)
+    {
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(root == null){
+            return ans;
+        }
+
+        // left boundary
+        leftBoundary(node.left, ans);
+
+        // leaf nodes
+        leafBoundary(node, ans);
+
+        // right boundary but in reverse order
+        rightBoundary(node.right, ans);
+
+        return ans;
+
+    }
+
+    // vertical traversal
+    public void inOrder(){
+        List<List<Integer>> ans = new ArrayList<>();
+        TreeMap<Integer, PriorityQueue<Integer>> treeMap = new TreeMap<>();
+        inOrder(this.root,treeMap, 0);
+
+        List<Integer> keySet = new ArrayList<>(treeMap.keySet());
+
+        PriorityQueue<PriorityQueue<Integer>> pq = new PriorityQueue<>();
+        for(int key: keySet){
+            pq.add(treeMap.get(key));
+        }
+
+        System.out.println(pq);
+    }
+    private void inOrder(Node root, TreeMap<Integer, PriorityQueue<Integer>> treeMap, int vl){
+        if(root == null){
+            return;
+        }
+
+        if(treeMap.containsKey(vl)){
+            treeMap.get(vl).add(root.data);
+        } else{
+            PriorityQueue<Integer> li = new PriorityQueue<>();
+            li.add(root.data);
+            treeMap.put(vl,li);
+        }
+
+        // left call
+        inOrder(root.left, treeMap,vl-1);
+
+        // right call
+        inOrder(root.left, treeMap,vl+1);
+
     }
 }
 
